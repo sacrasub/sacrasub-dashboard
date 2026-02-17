@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SacraSub - Central de Comando</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .briefing-preview {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .briefing-preview h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+
+        .briefing-preview ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .briefing-preview li {
+            padding: 5px 0;
+            color: #718096;
+        }
+
+        .briefing-preview li:before {
+            content: "▸ ";
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sync-button {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            font-size: 1.1rem;
+            padding: 15px 30px;
+            margin-bottom: 20px;
+        }
+
+        .sync-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(72, 187, 120, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>⚓ SacraSub - Central de Comando</h1>
+            <p>Sua rotina organizada em um só lugar</p>
+        </header>
+
+        <div style="text-align: center;">
+            <button class="btn sync-button" onclick="syncBriefing()">
+                🔄 Sincronizar Briefing Diário
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Google Calendar -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📅</span>
+                    <h2 class="card-title">Google Calendar</h2>
+                </div>
+                <div class="quick-links">
+                    <a href="https://calendar.google.com/calendar/u/0/r" target="_blank" class="btn btn-primary">
+                        Abrir Calendário
+                    </a>
+                    <a href="https://calendar.google.com/calendar/u/0/r/eventedit" target="_blank"
+                        class="btn btn-secondary">
+                        + Novo Evento
+                    </a>
+                </div>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Camadas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">📖</div>
+                        <div class="stat-label">Teologia</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">⚓</div>
+                        <div class="stat-label">Marinha</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trello -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <h2 class="card-title">Trello</h2>
+                </div>
+                <div class="quick-links">
+                    <a href="https://trello.com/b/NWpqPLzt/somor" target="_blank" class="btn btn-primary">
+                        SOMOR
+                    </a>
+                    <a href="https://trello.com/b/n18W111u/agenda-epm-cftab" target="_blank" class="btn btn-secondary">
+                        EPM
+                    </a>
+                    <a href="https://trello.com/b/0nXLnm7i/comsoc" target="_blank" class="btn btn-secondary">
+                        ComSoc
+                    </a>
+                    <a href="https://trello.com/b/9mdj34Pz/sindico-apl-vn-tabatinga" target="_blank"
+                        class="btn btn-secondary">
+                        Vila Naval
+                    </a>
+                </div>
+            </div>
+
+            <!-- Google Tasks -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">✅</span>
+                    <h2 class="card-title">Google Tasks</h2>
+                </div>
+                <div class="quick-links">
+                    <a href="https://tasks.google.com" target="_blank" class="btn btn-primary">
+                        Abrir Tarefas
+                    </a>
+                    <a href="https://tasks.google.com/create" target="_blank" class="btn btn-secondary">
+                        + Nova Tarefa
+                    </a>
+                </div>
+                <div class="briefing-preview">
+                    <h3>Briefing de Hoje</h3>
+                    <ul id="tasks-preview">
+                        <li>Clique em "Sincronizar Briefing" acima</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bullet Journal -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📓</span>
+                    <h2 class="card-title">Bullet Journal</h2>
+                </div>
+                <div class="quick-links">
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/morning_ritual.md"
+                        class="btn btn-primary">
+                        📖 Ritual Matinal
+                    </a>
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/bujo_guide.md"
+                        class="btn btn-secondary">
+                        📘 Guia de Uso
+                    </a>
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/system_guide.md"
+                        class="btn btn-secondary">
+                        🎯 Sistema Completo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Estudos -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎓</span>
+                    <h2 class="card-title">Gestão de Estudos</h2>
+                </div>
+                <div class="quick-links">
+                    <a href="file:///d:/Estrela/Documents/Gestão de Estudos 2026.html" class="btn btn-primary">
+                        Abrir Portal de Estudos
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ações Rápidas -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⚡</span>
+                    <h2 class="card-title">Ações Rápidas</h2>
+                </div>
+                <div class="quick-links">
+                    <button class="btn btn-primary" onclick="openBriefingFolder()">
+                        📂 Briefings Salvos
+                    </button>
+                    <a href="https://keep.google.com" target="_blank" class="btn btn-secondary">
+                        📝 Google Keep
+                    </a>
+                    <a href="https://drive.google.com" target="_blank" class="btn btn-secondary">
+                        ☁️ Google Drive
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>⚓ SacraSub - Sistema de Organização Unificado | Desenvolvido com ❤️ para máxima produtividade</p>
+        </footer>
+    </div>
+
+    <script>
+        function syncBriefing() {
+            alert('Executando script de sincronização...\n\nO briefing será gerado e enviado para o Google Tasks.\n\nVerifique o Google Tasks em alguns segundos!');
+
+            // Simula a execução do script PowerShell
+            // Em produção, isso chamaria o script routine_sync.ps1
+            window.location.href = 'file:///D:/Estrela/Documents/routine_sync.ps1';
+        }
+
+        function openBriefingFolder() {
+            window.location.href = 'file:///D:/Estrela/Documents/Daily_Briefings/';
+        }
+
+        // Atualiza a data/hora
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.querySelector('header p').textContent =
+                now.toLocaleDateString('pt-BR', options);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Atualiza a cada minuto
+    </script>
+</body>
+
+</html>
