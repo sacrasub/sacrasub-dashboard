@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Estudos - Turma A Veteranos (2026.1)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --text-color: #2d3748;
+            --heading-color: #1a202c;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Card Style */
+        .paper {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        h2 {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Alert Box */
+        .alert {
+            background-color: #fffaf0;
+            border-left: 4px solid #ed8936;
+            color: #c05621;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background-color: #f7fafc;
+            color: #4a5568;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        strong {
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+        /* Checklist Styling */
+        .checklist-group {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .checklist-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox {
+            min-width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
+            margin-right: 12px;
+            margin-top: 3px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-print {
+            background-color: #4299e1;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background-color: #edf2f7;
+            color: #4a5568;
+        }
+
+        .btn-back:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .paper {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .actions,
+            .btn {
+                display: none !important;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            h1 {
+                font-size: 18pt;
+            }
+
+            h2 {
+                font-size: 14pt;
+                margin-top: 20px;
+                color: black;
+            }
+
+            table {
+                font-size: 10pt;
+            }
+
+            th {
+                background-color: #eee !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Action Buttons -->
+        <div class="actions">
+            <a href="index.html" class="btn btn-back">⬅️ Voltar ao Dashboard</a>
+            <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir Guia</button>
+        </div>
+
+        <div class="paper">
+            <header>
+                <h1>Gestão de Estudos</h1>
+                <p class="subtitle">Turma A Veteranos (2026.1) — Estratégia de Consolidação</p>
+            </header>
+
+            <div class="alert">
+                <strong>⚠️ Atenção:</strong> Verifique o horário de Sexta-feira (Grego II), pois coincide com o
+                intervalo de outras turmas.
+            </div>
+
+            <h2>📅 Grade Horária Semanal</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Horário</th>
+                            <th>Terça-feira</th>
+                            <th>Quarta-feira</th>
+                            <th>Quinta-feira</th>
+                            <th>Sexta-feira</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>19:00 - 20:25</td>
+                            <td><strong>História do Pensamento Cristão I</strong><br><em>Prof. Hilário Bispo</em></td>
+                            <td><strong>Teologia Pastoral</strong><br><em>Prof. Luis Filipe</em></td>
+                            <td><strong>Apologética II</strong><br><em>Profa. Karoline Evangelista</em></td>
+                            <td><strong>Adm. Eclesiástica</strong><br><em>Prof. Cleiton Barbirato</em></td>
+                        </tr>
+                        <tr>
+                            <td>20:00 - 21:00</td>
+                            <td colspan="3" style="text-align: center; color: #718096; background: #fafafa;">
+                                <em>Intervalo (Jantar)</em></td>
+                            <td><strong>Grego II</strong><br><em>Profa. Cristiane Machado</em></td>
+                        </tr>
+                        <tr>
+                            <td>20:35 - 22:00</td>
+                            <td><strong>Teologia Contemporânea</strong><br><em>Prof. David Bezerra</em></td>
+                            <td><strong>N. Test. II – Paulinas</strong><br><em>Prof. Márcio Leal</em></td>
+                            <td><strong>Exegese do Novo Testamento</strong><br><em>Prof. Willian Orlandi</em></td>
+                            <td><strong>História do Protestantismo</strong><br><em>Prof. Alexsandro Silva</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>🚀 Rotina de Processos de Estudo</h2>
+            <p style="margin-bottom: 20px; color: #4a5568;">Fluxo de alta performance para cada disciplina:</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+
+                <div class="checklist-group">
+                    <h3>1. Pré-Aula (Preparação)</h3>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Verificar o tema:</strong> Consultar plano de ensino.</div>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Leitura Prévia:</strong> Ler texto base ou capítulo indicado.</div>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Revisão Rápida:</strong> Releia anotações anteriores (5 min).</div>
+                    </div>
+                </div>
+
+                <div class="checklist-group">
+                    <h3>2. Durante a Aula (Captura)</h3>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Foco Ativo:</strong> Evitar distrações e celular.</div>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Método Cornell:</strong> Usar divisão de colunas para tópicos.</div>
+                    </div>
+                </div>
+
+                <div class="checklist-group">
+                    <h3>3. Pós-Aula (Consolidação)</h3>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Revisão Imediata:</strong> Revisar anotações em até 24h.</div>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Resumo:</strong> Criar síntese do aprendizado.</div>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="checkbox"></span>
+                        <div><strong>Tarefas:</strong> Anotar prazos no calendário.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>✅ Checklist Início de Semestre</h2>
+            <div class="checklist-group">
+                <div class="checklist-item">
+                    <span class="checkbox"></span>
+                    <div>Materiais organizados (cadernos, pastas, canetas).</div>
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox"></span>
+                    <div>Pastas digitais criadas no Drive/Computador.</div>
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox"></span>
+                    <div>Logística de transporte e alimentação verificada.</div>
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox"></span>
+                    <div>Contatos do grupo de estudos confirmados.</div>
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox"></span>
+                    <div>Bibliografia básica identificada e adquirida.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

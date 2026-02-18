@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Estudos - Turma A Veteranos (2026.1)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        /* Style specifically for checkboxes */
+        .checklist-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+        }
+        .intro {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .btn-print {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        .btn-print:hover {
+            background-color: #0056b3;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Guia</button>
+
+    <h1>Gestão de Estudos - Turma A Veteranos (2026.1)</h1>
+    <p class="intro">Guia de organização da rotina acadêmica, foco e consolidação do aprendizado.</p>
+
+    <div class="note">
+        <strong>⚠️ Atenção:</strong> Verifique o horário de Sexta-feira (Grego II), pois coincide com o intervalo de outras turmas.
+    </div>
+
+    <h2>📅 Grade Horária Semanal</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Horário</th>
+                <th>Terça-feira</th>
+                <th>Quarta-feira</th>
+                <th>Quinta-feira</th>
+                <th>Sexta-feira</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>19:00 - 20:25</strong></td>
+                <td><strong>História do Pensamento Cristão I</strong><br><em>(Prof. Hilário Bispo)</em></td>
+                <td><strong>Teologia Pastoral</strong><br><em>(Prof. Luis Filipe)</em></td>
+                <td><strong>Apologética II</strong><br><em>(Profa. Karoline Evangelista)</em></td>
+                <td><strong>Adm. Eclesiástica</strong><br><em>(Prof. Cleiton Barbirato)</em></td>
+            </tr>
+            <tr>
+                <td><strong>20:00 - 21:00</strong></td>
+                <td><em>Intervalo</em></td>
+                <td><em>Intervalo</em></td>
+                <td><em>Intervalo</em></td>
+                <td><strong>Grego II</strong><br><em>(Profa. Cristiane Machado)</em></td>
+            </tr>
+            <tr>
+                <td><strong>20:35 - 22:00</strong></td>
+                <td><strong>Teologia Contemporânea</strong><br><em>(Prof. David Bezerra)</em></td>
+                <td><strong>N. Test. II – Paulinas</strong><br><em>(Prof. Márcio Leal)</em></td>
+                <td><strong>Exegese do Novo Testamento</strong><br><em>(Prof. Willian Orlandi)</em></td>
+                <td><strong>História do Protestantismo</strong><br><em>(Prof. Alexsandro Silva)</em></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>🚀 Rotina de Processos de Estudo</h2>
+    <p>Fluxo sugerido para cada disciplina:</p>
+
+    <h3>1. Pré-Aula (Preparação)</h3>
+    <div class="checklist-item">☐ <strong>Verificar o tema:</strong> Consultar plano de ensino.</div>
+    <div class="checklist-item">☐ <strong>Leitura Prévia:</strong> Ler texto base ou capítulo indicado.</div>
+    <div class="checklist-item">☐ <strong>Revisão Rápida:</strong> Releia anotações anteriores (5 min).</div>
+
+    <h3>2. Durante a Aula (Captura)</h3>
+    <div class="checklist-item">☐ <strong>Foco Ativo:</strong> Evitar distrações.</div>
+    <div class="checklist-item">☐ <strong>Método Cornell:</strong> Usar divisão de colunas para tópicos/anotações.</div>
+
+    <h3>3. Pós-Aula (Consolidação)</h3>
+    <div class="checklist-item">☐ <strong>Revisão Imediata:</strong> Revisar anotações no mesmo dia ou manhã seguinte.</div>
+    <div class="checklist-item">☐ <strong>Resumo:</strong> Criar síntese do aprendizado.</div>
+    <div class="checklist-item">☐ <strong>Tarefas:</strong> Anotar prazos no calendário.</div>
+
+    <h2>✅ Checklist Início de Semestre</h2>
+    <div class="checklist-item">☐ Materiais organizados (cadernos/pastas).</div>
+    <div class="checklist-item">☐ Pastas digitais criadas.</div>
+    <div class="checklist-item">☐ Logística de transporte verificada.</div>
+    <div class="checklist-item">☐ Contatos do grupo de estudos confirmados.</div>
+    <div class="checklist-item">☐ Bibliografia identificada.</div>
+
+</body>
+</html>
+

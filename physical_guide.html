@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condicionamento Físico - SacraSub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --text-color: #2d3748;
+            --heading-color: #9a3412;
+            --border-color: #ffedd5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .paper {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        h2 {
+            color: #c2410c;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ea580c;
+            padding-left: 15px;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background-color: #fff7ed;
+            color: #9a3412;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            background: #fff7ed;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .check-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #fdba74;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-print {
+            background-color: #ea580c;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: #c2410c;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background-color: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-back:hover {
+            background-color: #e2e8f0;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .paper {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .actions {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="actions">
+            <a href="index.html" class="btn btn-back">⬅️ Voltar ao Dashboard</a>
+            <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir Guia</button>
+        </div>
+
+        <div class="paper">
+            <header>
+                <h1>Condicionamento Físico</h1>
+                <p class="subtitle">Mens sana in corpore sano</p>
+            </header>
+
+            <h2>📅 Rotina Semanal de Treinos</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Atividade Principal</th>
+                            <th>Foco / Obs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Segunda</strong></td>
+                            <td>Musculação - Treino A</td>
+                            <td>Peito e Tríceps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Terça</strong></td>
+                            <td>Corrida (5km)</td>
+                            <td>Aeróbico Moderado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quarta</strong></td>
+                            <td>Musculação - Treino B</td>
+                            <td>Costas e Bíceps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quinta</strong></td>
+                            <td>Descanso ou Caminhada</td>
+                            <td>Recuperação Ativa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sexta</strong></td>
+                            <td>Musculação - Treino C</td>
+                            <td>Pernas e Ombros</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>🥗 Protocolo Nutricional</h2>
+            <div class="checklist-item">
+                <div class="check-box"></div>
+                <div><strong>Hidratação:</strong> Meta de 3L de água por dia.</div>
+            </div>
+            <div class="checklist-item">
+                <div class="check-box"></div>
+                <div><strong>Proteína:</strong> Ingerir proteína em todas as refeições.</div>
+            </div>
+            <div class="checklist-item">
+                <div class="check-box"></div>
+                <div><strong>Sono:</strong> Mínimo de 7h de sono de qualidade.</div>
+            </div>
+
+            <h2>📏 Acompanhamento de Medidas</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Peso (kg)</th>
+                            <th>Cintura (cm)</th>
+                            <th>% Gordura (Est.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>--/--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>--/--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
