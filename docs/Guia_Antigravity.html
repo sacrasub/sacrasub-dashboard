@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Antigravity - SacraSub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2 span {
+            margin-right: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .folder-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .folder-item {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .folder-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .folder-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Guia do Antigravity</h1>
+            <p>Melhores Práticas e Manutenção do Sistema SacraSub</p>
+        </header>
+
+        <!-- Seção 1: Estrutura de Pastas -->
+        <div class="card">
+            <h2><span>Pb</span> Estrutura de Pastas</h2>
+            <p>Seus arquivos agora estão organizados de forma lógica para facilitar a manutenção e o backup.</p>
+
+            <div class="folder-structure">
+                <div class="folder-item">
+                    <span class="folder-icon">🤖</span>
+                    <span class="folder-name">_Automation</span>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Scripts e Automação</p>
+                </div>
+                <div class="folder-item">
+                    <span class="folder-icon">⚙️</span>
+                    <span class="folder-name">_Config</span>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Senhas e Tokens</p>
+                </div>
+                <div class="folder-item">
+                    <span class="folder-icon">📝</span>
+                    <span class="folder-name">_Logs</span>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Registros de Erros</p>
+                </div>
+                <div class="folder-item">
+                    <span class="folder-icon">📊</span>
+                    <span class="folder-name">sacrasub-dashboard</span>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Arquivos do Site</p>
+                </div>
+                <div class="folder-item">
+                    <span class="folder-icon">📂</span>
+                    <span class="folder-name">Projects</span>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Projetos (Design, Jo316)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: Manutenção e Regras -->
+        <div class="card">
+            <h2><span>🛠️</span> Regras de Manutenção</h2>
+            <p>Para manter o sistema funcionando perfeitamente, siga estas diretrizes ao criar novos arquivos:</p>
+
+            <h3>1. Novos Scripts</h3>
+            <div class="info-box">
+                <strong>New Scripts:</strong> Save new scripts in <code>_Automation</code>.
+            </div>
+            <p>Sempre que criar um novo script Python (`.py`), PowerShell (`.ps1`) ou Batch (`.bat`), salve-o nesta
+                pasta. Isso mantém a raiz dos Documentos limpa.</p>
+
+            <h3>2. Credenciais e Segurança</h3>
+            <div class="warning-box">
+                <strong>Credentials:</strong> Keep sensitive files in <code>_Config</code>.
+            </div>
+            <p>Arquivos como <code>.env</code>, <code>credentials.json</code> e <code>token.json</code> contêm senhas e
+                chaves de acesso. Eles devem ficar isolados na pasta de configuração.</p>
+
+            <h3>3. Logs e Registros</h3>
+            <div class="info-box">
+                <strong>Logs:</strong> Scripts should be configured to write logs to <code>_Logs</code>.
+            </div>
+            <p>Se o seu script gera um arquivo de texto com resultados (como <code>log.txt</code> ou
+                <code>relatorio.csv</code>), configure-o para salvar na pasta <code>_Logs</code>.</p>
+        </div>
+
+        <!-- Seção 3: Atualização de Tarefas -->
+        <div class="card">
+            <h2><span>🔄</span> Atualização Automática</h2>
+            <p>Se você mover scripts ou alterar caminhos no futuro, o Windows Task Scheduler (Agendador de Tarefas) pode
+                parar de funcionar.</p>
+
+            <p>Para corrigir isso automaticamente, use o script de correção que deixei para você:</p>
+
+            <div class="code-block">
+                _Automation\update_tasks.ps1
+            </div>
+
+            <p>The <code>update_tasks.ps1</code> script is available in <code>_Automation</code> if you ever need to
+                update tasks again in the future.</p>
+
+            <p><strong>Como usar:</strong></p>
+            <ul>
+                <li>Clique com o botão direito no arquivo.</li>
+                <li>Selecione "Executar com o PowerShell".</li>
+                <li>Ele varrerá suas tarefas agendadas e atualizará os caminhos automaticamente.</li>
+            </ul>
+        </div>
+
+        <!-- Seção 4: Como Começar (Workflow Ideal) -->
+        <div class="card">
+            <h2><span>🚀</span> Workflow Ideal: Criando com Antigravity</h2>
+            <p>Siga este passo a passo sempre que for iniciar um novo projeto ou script para garantir organização e
+                eficiência:</p>
+
+            <ol style="list-style-position: inside; margin-left: 10px;">
+                <li style="margin-bottom: 15px;">
+                    <strong>1. Defina o Objetivo</strong>
+                    <p style="margin-top: 5px; color: #718096; font-size: 0.95rem;">Tenha clareza do que você quer. Ex:
+                        "Criar um script que organiza downloads por data".</p>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>2. Verifique o Existente</strong>
+                    <p style="margin-top: 5px; color: #718096; font-size: 0.95rem;">Antes de pedir, cheque se já existe
+                        algo similar em <code>_Automation</code> para evitar duplicidade.</p>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>3. Solicite ao Antigravity (Com Contexto!)</strong>
+                    <p style="margin-top: 5px; color: #718096; font-size: 0.95rem;">Ao pedir, especifique onde salvar.
+                        Ex: "Crie um script Python em <code>_Automation</code> que... e coloque as credenciais em
+                        <code>_Config</code>".</p>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>4. Valide e Teste</strong>
+                    <p style="margin-top: 5px; color: #718096; font-size: 0.95rem;">Rode o script. Se der erro, cole o
+                        erro no chat para o Antigravity corrigir.</p>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>5. Automatize (Opcional)</strong>
+                    <p style="margin-top: 5px; color: #718096; font-size: 0.95rem;">Se funcionou, peça para criar uma
+                        tarefa agendada. O Antigravity pode criar um <code>.bat</code> ou atualizar o Task Scheduler
+                        para você.</p>
+                </li>
+            </ol>
+
+            <div class="info-box">
+                <strong>Dica de Ouro:</strong> Mantenha o arquivo <code>task.md</code> (se você usar) atualizado para
+                saber o estado atual do seu projeto.
+            </div>
+        </div>
+
+        <footer>
+            <p>⚓ SacraSub System - Organização e Produtividade</p>
+            <p><a href="../sacrasub-dashboard/index.html" style="color: white; text-decoration: underline;">Voltar para
+                    o Dashboard</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -287,10 +287,6 @@
                         class="btn btn-secondary">
                         Vila Naval
                     </a>
-                    <a href="https://trello.com/b/jLaLbuHT/controle-pessoal" target="_blank" class="btn btn-secondary"
-                        style="border-color: #ecc94b; color: #b7791f;">
-                        👤 Controle Pessoal
-                    </a>
                 </div>
             </div>
 
@@ -304,8 +300,7 @@
                     <a href="https://tasks.google.com" target="_blank" class="btn btn-primary">
                         Abrir Tarefas
                     </a>
-                    <a href="https://calendar.google.com/calendar/u/0/r/tasks" target="_blank"
-                        class="btn btn-secondary">
+                    <a href="https://tasks.google.com/create" target="_blank" class="btn btn-secondary">
                         + Nova Tarefa
                     </a>
                 </div>
@@ -324,13 +319,16 @@
                     <h2 class="card-title">Bullet Journal</h2>
                 </div>
                 <div class="quick-links">
-                    <a href="morning_ritual.html" class="btn btn-primary">
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/morning_ritual.md"
+                        class="btn btn-primary">
                         📖 Ritual Matinal
                     </a>
-                    <a href="bujo_guide.html" class="btn btn-secondary">
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/bujo_guide.md"
+                        class="btn btn-secondary">
                         📘 Guia de Uso
                     </a>
-                    <a href="system_guide.html" class="btn btn-secondary">
+                    <a href="file:///C:/Users/Estrela/.gemini/antigravity/brain/29822387-f96a-4ae0-a63f-1f4bbe456011/system_guide.md"
+                        class="btn btn-secondary">
                         🎯 Sistema Completo
                     </a>
                 </div>
@@ -343,30 +341,8 @@
                     <h2 class="card-title">Gestão de Estudos</h2>
                 </div>
                 <div class="quick-links">
-                    <a href="Gestão de Estudos 2026.html" class="btn btn-primary">
-                        📚 Abrir Painel
-                    </a>
-                    <a href="https://script.google.com/macros/s/AKfycby8uC9WKj9LOztqqE6CQB48UByHhwh0EwSYImuhzBZTdn1ID9520pWD9t5ulPvxTYkCSQ/exec"
-                        target="_blank" class="btn btn-secondary">
-                        🌐 Portal Online
-                    </a>
-                </div>
-            </div>
-
-            <!-- Áreas de Foco -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🎯</span>
-                    <h2 class="card-title">Áreas de Foco</h2>
-                </div>
-                <div class="quick-links">
-                    <a href="finance_guide.html" class="btn btn-primary"
-                        style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                        💰 Financeiro
-                    </a>
-                    <a href="physical_guide.html" class="btn btn-primary"
-                        style="background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);">
-                        💪 Físico
+                    <a href="file:///d:/Estrela/Documents/Gestão de Estudos 2026.html" class="btn btn-primary">
+                        Abrir Portal de Estudos
                     </a>
                 </div>
             </div>
@@ -378,39 +354,14 @@
                     <h2 class="card-title">Ações Rápidas</h2>
                 </div>
                 <div class="quick-links">
-                    <a href="https://drive.google.com/drive/folders/1etQ4niJ2ANqv2A9UuDGrgwXPBNXaIQx8" target="_blank"
-                        class="btn btn-primary" style="background: linear-gradient(135deg, #FF6B6B 0%, #EE5D5D 100%);">
-                        📤 Entrada Digital
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1zTRTQm32LDg0guEMyaWehimYFghTPLn_" target="_blank"
-                        class="btn btn-primary">
-                        📂 Briefings na Nuvem
-                    </a>
+                    <button class="btn btn-primary" onclick="openBriefingFolder()">
+                        📂 Briefings Salvos
+                    </button>
                     <a href="https://keep.google.com" target="_blank" class="btn btn-secondary">
                         📝 Google Keep
                     </a>
                     <a href="https://drive.google.com" target="_blank" class="btn btn-secondary">
                         ☁️ Google Drive
-                    </a>
-                </div>
-            </div>
-
-            <!-- Guia Antigravity -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🚀</span>
-                    <h2 class="card-title">Guia Antigravity</h2>
-                </div>
-                <div class="quick-links">
-                    <a href="docs/Guia_Antigravity.html" class="btn btn-primary"
-                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        📘 Abrir Guia Completo
-                    </a>
-                    <a href="docs/Guia_Antigravity.html" class="btn btn-secondary">
-                        Workflow Ideal
-                    </a>
-                    <a href="docs/Guia_Antigravity.html" class="btn btn-secondary">
-                        📂 Estrutura de Pastas
                     </a>
                 </div>
             </div>
@@ -423,27 +374,21 @@
 
     <script>
         function syncBriefing() {
-            if (window.location.protocol === 'file:') {
-                alert('Executando script de sincronização...\n\nVerifique o Google Tasks em alguns segundos!');
-                window.location.href = 'file:///D:/Estrela/Documents/routine_sync.ps1';
-            } else {
-                alert('⚠️ VOCÊ ESTÁ NO MODO ONLINE\n\nPor segurança, navegadores não permitem que sites executem tarefas no seu PC.\n\nPARA SINCRONIZAR:\n1. Use o atalho "Sincronizar Bujo" na sua Área de Trabalho.\n2. Ou abra este dashboard pelo arquivo local no seu computador.');
-            }
+            alert('Executando script de sincronização...\n\nO briefing será gerado e enviado para o Google Tasks.\n\nVerifique o Google Tasks em alguns segundos!');
+
+            // Simula a execução do script PowerShell
+            // Em produção, isso chamaria o script routine_sync.ps1
+            window.location.href = 'file:///D:/Estrela/Documents/routine_sync.ps1';
         }
 
         function openBriefingFolder() {
-            if (window.location.protocol === 'file:') {
-                window.location.href = 'file:///D:/Estrela/Documents/Daily_Briefings/';
-            } else {
-                alert('⚠️ VOCÊ ESTÁ NO MODO ONLINE\n\nNão é possível abrir pastas do seu computador através da internet.\n\nCaminho da pasta no seu PC:\nD:\\Estrela\\Documents\\Daily_Briefings');
-            }
+            window.location.href = 'file:///D:/Estrela/Documents/Daily_Briefings/';
         }
 
         // Atualiza a data/hora
         function updateDateTime() {
             const now = new Date();
             const options = {
-                timeZone: 'America/Rio_Branco',
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
