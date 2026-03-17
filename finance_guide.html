@@ -206,81 +206,219 @@
         <div class="actions">
             <a href="index.html" class="btn btn-back">⬅️ Voltar ao Dashboard</a>
             <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir Guia</button>
+            <a href="https://docs.google.com/spreadsheets/d/1iVcDsHJ2pMiomzkWEjgyY6_5Tqb_nis_1Fh_2bbpx_4/edit" target="_blank" class="btn btn-print" style="background-color: #2f855a;">✏️ Editar Dados</a>
         </div>
 
         <div class="paper">
             <header>
                 <h1>Gestão Financeira</h1>
-                <p class="subtitle">Planejamento, metas e controle de gastos</p>
+                <p class="subtitle">Dados integrados com C6 Bank & Google Sheets</p>
+                <p id="last-update" style="font-size: 0.8rem; color: #718096; margin-top: 5px;">Carregando dados...</p>
             </header>
 
-            <h2>📊 Resumo Mensal (Exemplo)</h2>
+            <!-- Filtros de Mês/Ano -->
+            <div style="margin-bottom: 20px; text-align: center;">
+                <select id="monthFilter" onchange="renderDashboard()" style="padding: 8px; border-radius: 5px; border: 1px solid #cbd5e1;">
+                    <option value="all">Todo o Período</option>
+                    <!-- Opções preenchidas via JS -->
+                </select>
+            </div>
+
+            <!-- Resumo Financeiro Cards -->
+            <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px; padding: 20px; background: #ecfdf5; border-radius: 12px; border: 1px solid #a7f3d0;">
+                    <h3 style="margin-top: 0; color: #047857;">Entradas</h3>
+                    <p id="total-income" style="font-size: 1.5rem; font-weight: bold; color: #047857;">R$ 0,00</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; padding: 20px; background: #fff1f2; border-radius: 12px; border: 1px solid #fecdd3;">
+                    <h3 style="margin-top: 0; color: #be123c;">Saídas</h3>
+                    <p id="total-expenses" style="font-size: 1.5rem; font-weight: bold; color: #be123c;">R$ 0,00</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; padding: 20px; background: #eff6ff; border-radius: 12px; border: 1px solid #bfdbfe;">
+                    <h3 style="margin-top: 0; color: #1e40af;">Saldo</h3>
+                    <p id="total-balance" style="font-size: 1.5rem; font-weight: bold; color: #1e40af;">R$ 0,00</p>
+                </div>
+            </div>
+
+            <h2>📊 Classificação de Despesas</h2>
             <div class="table-container">
-                <table>
+                <table id="expenses-table">
                     <thead>
                         <tr>
                             <th>Categoria</th>
-                            <th>Orçado</th>
-                            <th>Realizado</th>
-                            <th>Status</th>
+                            <th>Total Gasto</th>
+                            <th>% do Total</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dízimo & Ofertas</td>
-                            <td>R$ --</td>
-                            <td>R$ --</td>
-                            <td>✅ OK</td>
-                        </tr>
-                        <tr>
-                            <td>Despesas Fixas</td>
-                            <td>R$ --</td>
-                            <td>R$ --</td>
-                            <td>⚠️ Atenção</td>
-                        </tr>
-                        <tr>
-                            <td>Investimentos</td>
-                            <td>R$ --</td>
-                            <td>R$ --</td>
-                            <td>✅ OK</td>
-                        </tr>
-                        <tr>
-                            <td>Lazer</td>
-                            <td>R$ --</td>
-                            <td>R$ --</td>
-                            <td>✅ OK</td>
-                        </tr>
+                    <tbody id="expenses-body">
+                        <!-- Preenchido via JS -->
                     </tbody>
                 </table>
             </div>
 
-            <h2>🎯 Metas de Curto Prazo</h2>
-
-            <div style="margin-bottom: 25px;">
-                <h3>Reserva de Emergência</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 45%;"></div>
-                </div>
-                <p style="font-size: 0.9em; color: #64748b;">R$ 4.500 / R$ 10.000 (45%)</p>
-            </div>
-
-            <div style="margin-bottom: 25px;">
-                <h3>Viagem de Férias</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 20%;"></div>
-                </div>
-                <p style="font-size: 0.9em; color: #64748b;">R$ 1.000 / R$ 5.000 (20%)</p>
-            </div>
-
-            <h2>📝 Anotações & Ajustes</h2>
-            <div
-                style="border: 2px dashed #cbd5e1; padding: 20px; border-radius: 8px; color: #94a3b8; min-height: 100px;">
-                Espaço para anotações sobre compras planejadas, cancelamento de assinaturas, etc.
+            <h2>📝 Últimas Transações</h2>
+            <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                <table id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-body">
+                        <!-- Preenchido via JS -->
+                    </tbody>
+                </table>
             </div>
 
         </div>
     </div>
 
-</body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        // ID da Planilha Google (Público/Published ou com chave de API, mas vamos usar gviz simples que exige "Publish to Web")
+        // IMPORTANTE: O usuário precisa publicar a planilha na web (Arquivo > Compartilhar > Publicar na Web > CSV)
+        // Ou deixar o link público para leitura.
+        const SPREADSHEET_ID = '1iVcDsHJ2pMiomzkWEjgyY6_5Tqb_nis_1Fh_2bbpx_4';
+        const SHEET_NAME = 'Financeiro 2026';
+
+        let allTransactions = [];
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(fetchData);
+
+        function fetchData() {
+            // Usando Google Visualization API Query Language
+            const query = `SELECT A, B, C, D, E, F, G WHERE A IS NOT NULL OFFSET 1`; // Pula cabeçalho
+            const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}&tq=${encodeURIComponent(query)}`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(text => {
+                    // O retorno vem como: /*O_o*/ google.visualization.Query.setResponse({...});
+                    const jsonString = text.substring(47).slice(0, -2);
+                    const json = JSON.parse(jsonString);
+                    processData(json);
+                })
+                .catch(err => {
+                    console.error('Erro ao buscar dados:', err);
+                    document.getElementById('last-update').innerHTML = '❌ Erro ao carregar dados. <br>Verifique se a planilha está publicada na Web (Arquivo > Compartilhar > Publicar na Web).';
+                });
+        }
+
+        function processData(json) {
+            const rows = json.table.rows;
+            allTransactions = rows.map(row => {
+                // Colunas: 0=Data, 1=Desc, 2=Valor, 3=Tipo, 4=Categoria, 5=Mês, 6=Ano
+                return {
+                    date: row.c[0] ? row.c[0].f || row.c[0].v : '',
+                    desc: row.c[1] ? row.c[1].v : '',
+                    value: row.c[2] ? parseFloat(row.c[2].v) : 0,
+                    type: row.c[3] ? row.c[3].v : '',
+                    category: row.c[4] ? row.c[4].v : 'Outros',
+                    month: row.c[5] ? row.c[5].v : '',
+                    year: row.c[6] ? row.c[6].v : ''
+                };
+            });
+
+            populateMonthFilter();
+            renderDashboard();
+            document.getElementById('last-update').innerText = `Atualizado em: ${new Date().toLocaleString()}`;
+        }
+
+        function populateMonthFilter() {
+            const months = [...new Set(allTransactions.map(t => `${t.month}/${t.year}`))].filter(m => m !== '/').sort();
+            const filter = document.getElementById('monthFilter');
+            
+            // Limpa opções antigas (mantém "Todo o Período")
+            while (filter.options.length > 1) {
+                filter.remove(1);
+            }
+
+            months.forEach(m => {
+                const option = document.createElement('option');
+                option.value = m;
+                option.text = m;
+                filter.add(option);
+            });
+            
+            // Seleciona o mês atual se existir, senão o último
+            // const currentMonth = new Date().toLocaleDateString('pt-BR', { month: '2-digit', year: 'numeric' });
+            // if (months.includes(currentMonth)) filter.value = currentMonth;
+        }
+
+        function renderDashboard() {
+            const selectedMonth = document.getElementById('monthFilter').value;
+            
+            const filteredData = selectedMonth === 'all' 
+                ? allTransactions 
+                : allTransactions.filter(t => `${t.month}/${t.year}` === selectedMonth);
+
+            // Cálculos Totais
+            const income = filteredData.filter(t => t.type === 'Receita').reduce((sum, t) => sum + t.value, 0);
+            const expenses = filteredData.filter(t => t.type === 'Despesa').reduce((sum, t) => sum + t.value, 0);
+            const balance = income - expenses; // Nota: Se Despesa for positivo, subtrai. Se for negativo no CSV, soma. 
+                                               // O script python salva abs, e define tipo. Vamos assumir que valor é positivo no sheet.
+            
+            document.getElementById('total-income').innerText = income.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('total-expenses').innerText = expenses.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('total-balance').innerText = balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('total-balance').style.color = balance >= 0 ? '#1e40af' : '#be123c';
+
+            // Tabela de Despesas por Categoria
+            const expensesByCategory = {};
+            filteredData.filter(t => t.type === 'Despesa').forEach(t => {
+                expensesByCategory[t.category] = (expensesByCategory[t.category] || 0) + t.value;
+            });
+
+            const sortedCategories = Object.entries(expensesByCategory).sort((a, b) => b[1] - a[1]);
+            
+            const expensesBody = document.getElementById('expenses-body');
+            expensesBody.innerHTML = '';
+            
+            sortedCategories.forEach(([cat, val]) => {
+                const percent = expenses > 0 ? (val / expenses) * 100 : 0;
+                const row = `
+                    <tr>
+                        <td>${cat}</td>
+                        <td>${val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="background: #e2e8f0; height: 8px; width: 100px; border-radius: 4px; overflow: hidden;">
+                                    <div style="background: #10b981; height: 100%; width: ${percent}%;"></div>
+                                </div>
+                                ${percent.toFixed(1)}%
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                expensesBody.innerHTML += row;
+            });
+
+            // Tabela de Últimas Transações
+            const transactionsBody = document.getElementById('transactions-body');
+            transactionsBody.innerHTML = '';
+            
+            // Ordena por data (assumindo formato DD/MM/YYYY text, teria que converter, ou pega ordem original invertida se csv já vier ordenado)
+            // Vamos apenas inverter para mostrar as últimas primeiro (se o CSV estiver cronológico)
+            const recentTx = [...filteredData].reverse(); 
+
+            recentTx.forEach(t => {
+                const color = t.type === 'Receita' ? 'green' : 'red';
+                const sign = t.type === 'Receita' ? '+' : '-';
+                const row = `
+                    <tr>
+                        <td>${t.date}</td>
+                        <td>${t.desc}</td>
+                        <td><span style="font-size: 0.85em; background: #f1f5f9; padding: 2px 8px; border-radius: 12px;">${t.category}</span></td>
+                        <td style="color: ${color}; font-weight: 500;">${sign} ${t.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                    </tr>
+                `;
+                transactionsBody.innerHTML += row;
+            });
+        }
+    </script>
 
 </html>
